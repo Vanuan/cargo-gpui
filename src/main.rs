@@ -1,14 +1,20 @@
 use cargo_generate::{generate, GenerateArgs, TemplatePath};
 
-// TODO: replace with the pushed template repo URL
 const TEMPLATE_REPO: &str = "https://github.com/Vanuan/gpui-starter-template";
 
 fn main() -> anyhow::Result<()> {
-    let mut args = std::env::args().skip(1);
+    let mut args: Vec<String> = std::env::args().skip(1).collect();
 
-    match args.next().as_deref() {
+    // `cargo gpui new my-app` invokes `cargo-gpui` with args ["gpui", "new", "my-app"].
+    // Strip the leading "gpui" so the same binary also works when run directly
+    // (e.g. `cargo-gpui new my-app`).
+    if args.first().map(String::as_str) == Some("gpui") {
+        args.remove(0);
+    }
+
+    match args.first().map(String::as_str) {
         Some("new") => {
-            let name = args.next();
+            let name = args.get(1).cloned();
 
             let generate_args = GenerateArgs {
                 template_path: TemplatePath {
@@ -22,7 +28,7 @@ fn main() -> anyhow::Result<()> {
             generate(generate_args)?;
         }
         _ => {
-            eprintln!("Usage: gpui-cli new <name>");
+            eprintln!("Usage: cargo gpui new <name>");
         }
     }
 
