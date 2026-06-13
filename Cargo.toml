@@ -2,6 +2,9 @@
 name = "cargo-gpui"
 version = "0.1.0"
 edition = "2024"
+license = "Apache-2.0"
+description = "Cargo subcommand to scaffold GPUI apps from a template, with backend selection"
+repository = "https://github.com/Vanuan/cargo-gpui"
 
 [dependencies]
 cargo-generate = "0.23.12"

@@ -204,6 +204,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "cargo-gpui"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "cargo-generate",
+]
+
+[[package]]
 name = "cargo-util-schemas"
 version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -900,14 +908,6 @@ dependencies = [
  "log",
  "regex-automata",
  "regex-syntax",
-]
-
-[[package]]
-name = "gpui-cli"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "cargo-generate",
 ]
 
 [[package]]
